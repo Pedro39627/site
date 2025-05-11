@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>ApplePoint - Início</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      background-color: black;
+      color: white;
+    }
+    header nav a {
+      margin: 0 16px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+    }
+    .hero {
+      background: black;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .hero h1 {
+      font-size: 32px;
+    }
+    .hero button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #407BFF;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .categories, .promocoes, .recomendados, .watch-section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .item-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .produto {
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      width: 180px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .produto img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .produto h4 {
+      margin: 12px 0 8px;
+    }
+    .produto p {
+      font-weight: bold;
+      color: #407BFF;
+    }
+    .produto button {
+      margin-top: 8px;
+      padding: 8px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      background: #407BFF;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .watch-banner {
+      background: #111;
+      color: white;
+      padding: 40px 20px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    footer {
+      background: #111;
+      color: white;
+      padding: 40px 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+    }
+    footer input, footer textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: none;
+    }
+    footer button {
+      margin-top: 12px;
+      padding: 10px 20px;
+      background-color: #407BFF;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .social-icons img {
+      width: 24px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div><strong>ApplePoint</strong></div>
+  <nav>
+  </nav>
+  <div>🛒 ❤️ 👤</div>
+</header>
+
+<section class="hero">
+  <h1>Encontre os melhores produtos Apple<br>preços acessíveis com qualidade garantida</h1>
+  <button>Ver ofertas</button>
+</section>
+
+<section class="categories">
+  <h2>Selecione a sua categoria</h2>
+  <div class="item-grid">
+    <div class="produto">📱 iPhone</div>
+    <div class="produto">⌚ Apple Watch</div>
+    <div class="produto">💻 MacBook</div>
+    <div class="produto">🎧 AirPods</div>
+  </div>
+</section>
+
+<section class="promocoes">
+  <h2>PROMOÇÕES</h2>
+  <div class="item-grid">
+    <div class="produto">
+      <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone">
+      <h4>iPhone 14</h4>
+      <p>R$ 4.999,00</p>
+      <button>Comprar</button>
+    </div>
+    <div class="produto">
+      <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v5558422266373487603/products/222013E.00.638560546055940741-usado-iphone-14-pro-max-1tb-prateado.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone Pro">
+      <h4>iPhone 14 Pro</h4>
+      <p>R$ 6.999,00</p>
+      <button>Comprar</button>
+    </div>
+  </div>
+</section>
+
+<section class="recomendados">
+  <h2>Recomendação baseada em você!</h2>
+  <div class="item-grid">
+    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Produto 1</h4><p>R$ 999</p><button>Comprar</button></div>
+    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Produto 2</h4><p>R$ 899</p><button>Comprar</button></div>
+    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Produto 3</h4><p>R$ 799</p><button>Comprar</button></div>
+  </div>
+</section>
+
+<section class="watch-section">
+  <div class="watch-banner">Apple Watch</div>
+  <div class="item-grid">
+    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Watch SE</h4><p>R$ 1.599</p><button>Comprar</button></div>
+    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Watch Series 8</h4><p>R$ 2.599</p><button>Comprar</button></div>
+    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Watch Ultra</h4><p>R$ 4.999</p><button>Comprar</button></div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <h3>SUPORTE</h3>
+      <input type="text" name="nome" placeholder="E-mail de contato" required>
+      <textarea name="mensagem" placeholder="Digite sua mensagem..." required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+  <div>
+    <h3>CONTATO</h3>
+    <p>(11) 4002-8922<br>help@applepoint.com<br>Joinville - SC</p>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/apple" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/apple" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
+        </a>
+        <a href="https://www.youtube.com/apple" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
