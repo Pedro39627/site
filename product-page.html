@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple MacBook Pro 2020 - ApplePoint</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .header {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            background: white;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .product-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .product-images {
+            position: relative;
+        }
+
+        .main-image {
+            width: 100%;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #87CEEB, #E0F6FF);
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-image img {
+            width: 80%;
+            height: auto;
+        }
+
+        .thumbnail-list {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .thumbnail.active {
+            border-color: #007AFF;
+        }
+
+        .product-info {
+            padding-left: 20px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            color: #FF9500;
+        }
+
+        .review-count {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .product-id {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 32px;
+            font-weight: 700;
+            color: #007AFF;
+            margin-bottom: 30px;
+        }
+
+        .old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        .options {
+            margin-bottom: 30px;
+        }
+
+        .option-group {
+            margin-bottom: 20px;
+        }
+
+        .option-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .option-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            padding: 8px 15px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .option-btn.active {
+            border-color: #007AFF;
+            background: #007AFF;
+            color: white;
+        }
+
+        .quantity-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .quantity-control {
+            display: flex;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            background: #f8f8f8;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 35px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #e0e0e0;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .add-to-cart {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .tabs {
+            border-top: 1px solid #e0e0e0;
+            margin-top: 50px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            border: none;
+            background: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn.active {
+            border-bottom-color: #007AFF;
+            color: #007AFF;
+        }
+
+        .tab-content {
+            padding: 30px 0;
+        }
+
+        .description-text {
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .recommendations {
+            margin-top: 50px;
+        }
+
+        .recommendations h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .product-card .rating {
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .product-card .name {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .product-card .price {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <span>🍎 ApplePoint</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#">Página Original</a>
+            <a href="#">Produtos Originais</a>
+        </nav>
+        <div class="header-icons">
+            <span>🛒</span>
+            <span>❤️</span>
+            <span>👤</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product-section">
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="/api/placeholder/400/300" alt="MacBook Pro">
+                </div>
+                <div class="thumbnail-list">
+                    <div class="thumbnail active">
+                        <img src="/api/placeholder/60/60" alt="Thumbnail 1">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="/api/placeholder/60/60" alt="Thumbnail 2">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="/api/placeholder/60/60" alt="Thumbnail 3">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="/api/placeholder/60/60" alt="Thumbnail 4">
+                    </div>
+                    <div class="thumbnail">
+                        <img src="/api/placeholder/60/60" alt="Thumbnail 5">
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="rating">
+                    <div class="stars">★★★★★</div>
+                    <span class="review-count">Classificação de 4.7 estrelas</span>
+                </div>
+                
+                <h1 class="product-title">Apple MacBook Pro 2020 com Chip M1 (4 polegadas, 16GB de RAM, 1TB de armazenamento SSD) - Cinza Espacial</h1>
+                
+                <div class="product-id">ID: ASN4671</div>
+                
+                <div class="price">
+                    R$ 5.000 <span class="old-price">R$ 6.000</span>
+                </div>
+
+                <div class="options">
+                    <div class="option-group">
+                        <label class="option-label">Capacidade</label>
+                        <div class="option-buttons">
+                            <button class="option-btn active">16 GB de Memória Unificada</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">Tamanho</label>
+                        <div class="option-buttons">
+                            <button class="option-btn active">Tela Liquid Retina XDR de 14 polegadas</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">Armazenamento</label>
+                        <div class="option-buttons">
+                            <button class="option-btn active">1TB de Armazenamento SSD</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quantity-section">
+                    <div class="quantity-control">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" value="01" class="quantity-input">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
+
+                <button class="add-to-cart" style="margin-top: 10px;">Comprar Agora</button>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active">DESCRIÇÃO</button>
+                <button class="tab-btn">AVALIAÇÕES</button>
+            </div>
+            <div class="tab-content">
+                <div class="description-text">
+                    <h3>Descrição</h3>
+                    <p>O Mac Book Pro mais poderoso de todos os tempos chegou. Com chips rápidos extraordinários, Wi-Fi 6 super rápido e as tecnologias mais avançadas já criadas em um MacBook revolucionário e ainda sustentável. Graças aos chipsets Apple M1 Pro e M1 Max, o MacBook Pro 2020 tem um desempenho revolucionário e uma eficiência energética extraordinária. Os gráficos M1 Pro com nova engine gráfica de até 16 núcleos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="recommendations">
+        <div class="container">
+            <h2>Semelhantes e Recomendados</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="/api/placeholder/200/150" alt="MacBook R">
+                    <div class="rating">
+                        <div class="stars">★★★☆☆</div>
+                        <span>(124)</span>
+                    </div>
+                    <div class="name">MacBook R</div>
+                    <div class="price">de R$ 4.000</div>
+                </div>
+                <div class="product-card">
+                    <img src="/api/placeholder/200/150" alt="MacBook Ultra">
+                    <div class="rating">
+                        <div class="stars">★★★★☆</div>
+                        <span>(752)</span>
+                    </div>
+                    <div class="name">MacBook Ultra</div>
+                    <div class="price">de R$ 5.000</div>
+                </div>
+                <div class="product-card">
+                    <img src="/api/placeholder/200/150" alt="MacBook SE">
+                    <div class="rating">
+                        <div class="stars">★★★☆☆</div>
+                        <span>(1786)</span>
+                    </div>
+                    <div class="name">MacBook SE</div>
+                    <div class="price">de R$ 5.000</div>
+                </div>
+                <div class="product-card">
+                    <img src="/api/placeholder/200/150" alt="MacBook 8">
+                    <div class="rating">
+                        <div class="stars">★★★★☆</div>
+                        <span>(236)</span>
+                    </div>
+                    <div class="name">MacBook 8</div>
+                    <div class="price">de R$ 5.800</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SUPORTE</h3>
+                <p>Esta com dúvida?<br>Envie uma mensagem para o nosso time de suporte</p>
+            </div>
+            <div class="footer-section">
+                <h3>Empresa</h3>
+                <a href="#">Produtos</a>
+                <a href="#">Serviços</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>NOSSA REDE</h3>
+                <p>+55 47 9 9285-3050<br>hello@applepoint.com.br<br>São Paulo - SP</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
