@@ -2,145 +2,414 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ApplePoint - Início</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f5f5;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: #F0F2F5;
       color: #333;
     }
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 32px;
-      background-color: black;
+      padding: 18px 40px;
+      background-color: #1A1A1A;
       color: white;
+      flex-wrap: wrap;
+    }
+    header .logo {
+      font-weight: bold;
+      font-size: 22px;
+      margin-right: 20px;
+    }
+    header nav {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        flex-wrap: wrap;
     }
     header nav a {
-      margin: 0 16px;
+      margin: 0 18px;
       text-decoration: none;
       color: white;
       font-weight: 500;
-    }
-    .hero {
-      background: black;
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .hero h1 {
-      font-size: 32px;
-    }
-    .hero button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      background: #407BFF;
-      border: none;
-      color: white;
-      border-radius: 8px;
-      font-size: 16px;
+      font-size: 15px;
+      transition: opacity 0.2s;
+      white-space: nowrap;
       cursor: pointer;
     }
-    .categories, .promocoes, .recomendados, .watch-section {
-      padding: 40px 20px;
+    header nav a:hover {
+        opacity: 0.8;
+    }
+    header .header-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 22px;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+
+    .hero {
+      background: #1A1A1A;
+      color: white;
       text-align: center;
+      padding: 100px 20px;
+    }
+    .hero h1 {
+      font-size: 44px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 40px;
+      color: #ccc;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero .search-bar {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    .hero .search-bar input {
+      padding: 14px 25px;
+      border-radius: 30px;
+      border: none;
+      width: 450px;
+      max-width: 90%;
+      font-size: 17px;
+      outline: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .hero .search-bar button {
+      background-color: #007AFF;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 25px;
+      margin-left: -50px;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: bold;
+      z-index: 1;
+      transition: background-color 0.2s;
+    }
+    .hero .search-bar button:hover {
+        background-color: #0056b3;
+    }
+
+    .categories, .promocoes, .recomendados, .watch-section {
+      padding: 60px 20px;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-size: 34px;
+      margin-bottom: 40px;
+      color: #333;
+      font-weight: 700;
     }
     .item-grid {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 25px;
       flex-wrap: wrap;
       margin-top: 20px;
     }
+    .categoria-item {
+      background: white;
+      padding: 25px 20px;
+      border-radius: 15px;
+      width: 200px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      font-size: 20px;
+      font-weight: 600;
+      color: #007AFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 90px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .categoria-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
     .produto {
       background: white;
-      padding: 16px;
-      border-radius: 12px;
-      width: 180px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      border-radius: 15px;
+      width: 240px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: left;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .produto:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.12);
     }
     .produto img {
       width: 100%;
-      border-radius: 8px;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 15px;
     }
     .produto h4 {
-      margin: 12px 0 8px;
+      font-size: 18px;
+      margin: 0 0 8px;
+      color: #333;
+      font-weight: 600;
     }
-    .produto p {
+    .produto .price {
       font-weight: bold;
-      color: #407BFF;
+      color: #007AFF;
+      font-size: 22px;
+    }
+    .produto .old-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 16px;
+      margin-left: 8px;
     }
     .produto button {
-      margin-top: 8px;
-      padding: 8px;
+      margin-top: 15px;
+      padding: 12px;
       width: 100%;
       border: none;
-      border-radius: 6px;
-      background: #407BFF;
+      border-radius: 8px;
+      background: #007AFF;
       color: white;
       font-weight: bold;
       cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s;
     }
-    .watch-banner {
-      background: #111;
-      color: white;
-      padding: 40px 20px;
-      font-size: 28px;
-      font-weight: bold;
+    .produto button:hover {
+      background-color: #0056b3;
     }
+
+    .watch-section {
+      display: none;
+    }
+
     footer {
-      background: #111;
+      background: #1A1A1A;
       color: white;
-      padding: 40px 32px;
+      padding: 50px 40px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 50px;
+      margin-top: 80px;
+    }
+    footer h3 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    footer p, footer a {
+      color: #ccc;
+      line-height: 1.8;
+      font-size: 15px;
+      text-decoration: none;
+    }
+    footer a:hover {
+        text-decoration: underline;
     }
     footer input, footer textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 6px;
+      width: calc(100% - 28px);
+      padding: 14px;
+      margin-top: 12px;
+      border-radius: 8px;
       border: none;
+      background-color: #2A2A2A;
+      color: white;
+      font-size: 15px;
+    }
+    footer textarea {
+      min-height: 100px;
+      resize: vertical;
     }
     footer button {
-      margin-top: 12px;
-      padding: 10px 20px;
-      background-color: #407BFF;
+      margin-top: 18px;
+      padding: 14px 25px;
+      background-color: #007AFF;
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.2s;
     }
-    .social-icons img {
-      width: 24px;
-      margin-right: 10px;
+    footer button:hover {
+      background-color: #0056b3;
+    }
+    .social-icons a img {
+      width: 35px;
+      margin-right: 20px;
+      vertical-align: middle;
+      filter: invert(100%);
+    }
+    .copyright {
+      text-align: center;
+      color: #ccc;
+      font-size: 13px;
+      padding-top: 25px;
+      border-top: 1px solid #3A3A3A;
+      margin-top: 40px;
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            padding: 15px 20px;
+        }
+        header .logo {
+            margin-bottom: 10px;
+        }
+        header nav {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        header nav a {
+            margin: 5px 10px;
+            font-size: 14px;
+        }
+        header .header-icons {
+            margin-left: 0;
+            margin-top: 10px;
+            font-size: 20px;
+        }
+
+        .hero {
+            padding: 60px 15px;
+        }
+        .hero h1 {
+            font-size: 32px;
+        }
+        .hero p {
+            font-size: 16px;
+        }
+        .hero .search-bar {
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero .search-bar input {
+            width: 90%;
+            margin-bottom: 15px;
+            margin-left: 0;
+        }
+        .hero .search-bar button {
+            width: 90%;
+            margin-left: 0;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .categoria-item, .produto {
+            width: 90%;
+            max-width: 300px;
+            margin-bottom: 15px;
+        }
+        .produto img {
+            height: 150px;
+        }
+
+        .watch-section {
+            display: none;
+        }
+
+        footer {
+            grid-template-columns: 1fr;
+            padding: 40px 20px;
+            gap: 30px;
+        }
+        footer h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        footer p, footer a, footer input, footer textarea {
+            font-size: 14px;
+        }
+        footer input, footer textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+        }
+        footer button {
+            padding: 12px;
+            font-size: 15px;
+        }
+        .social-icons a img {
+            width: 30px;
+            margin-right: 15px;
+        }
+        .copyright {
+            font-size: 11px;
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero h1 {
+            font-size: 28px;
+        }
+        .hero p {
+            font-size: 15px;
+        }
+        .hero .search-bar input, .hero .search-bar button {
+            font-size: 16px;
+            padding: 12px 20px;
+        }
+        .categoria-item, .produto {
+            width: 100%;
+        }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div><strong>ApplePoint</strong></div>
+  <div class="logo"><strong>ApplePoint</strong></div>
   <nav>
+    <a href="inicial.html">Página Inicial</a>
+    <a href="products-list.html">Produtos</a>
+    <a href="contact.html">Contato</a>
+    <a href="dashboard.html">Minha Conta</a>
+    <a href="login.html">Login</a>
   </nav>
-  <div>🛒 ❤️ 👤</div>
+  <div class="header-icons" onclick="location.href='cart.html'">🛒 ❤️ 👤</div>
 </header>
 
 <section class="hero">
-  <h1>Encontre os melhores produtos Apple<br>preços acessíveis com qualidade garantida</h1>
-  <button>Ver ofertas</button>
+  <h1>Encontre os melhores produtos Apple com<br>preços acessíveis.</h1>
+  <p>Encontre os melhores, confiáveis e acessíveis produtos da Apple aqui.</p>
+  <div class="search-bar">
+    <input type="text" placeholder="Ache os melhores produtos!" aria-label="Pesquisar">
+    <button onclick="alert('Funcionalidade de Busca (simulada): ' + this.previousElementSibling.value)">Pesquisar</button>
+  </div>
 </section>
 
 <section class="categories">
-  <h2>Selecione a sua categoria</h2>
+  <h2>Selecione a sua categoria.</h2>
   <div class="item-grid">
-    <div class="produto">📱 iPhone</div>
-    <div class="produto">⌚ Apple Watch</div>
-    <div class="produto">💻 MacBook</div>
-    <div class="produto">🎧 AirPods</div>
+    <div class="categoria-item" onclick="location.href='products-list.html'">IPhone</div>
+    <div class="categoria-item" onclick="location.href='products-list.html'">MacBook</div>
   </div>
 </section>
 
@@ -148,59 +417,90 @@
   <h2>PROMOÇÕES</h2>
   <div class="item-grid">
     <div class="produto">
-      <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone">
+      <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone 14">
       <h4>iPhone 14</h4>
-      <p>R$ 4.999,00</p>
-      <button>Comprar</button>
+      <p class="price">R$ 4.000,00</p>
+      <button onclick="location.href='cart.html'">Compre</button>
     </div>
     <div class="produto">
-      <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v5558422266373487603/products/222013E.00.638560546055940741-usado-iphone-14-pro-max-1tb-prateado.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone Pro">
+      <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v5558422266373487603/products/222013E.00.638560546055940741-usado-iphone-14-pro-max-1tb-prateado.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone 14 Pro">
       <h4>iPhone 14 Pro</h4>
-      <p>R$ 6.999,00</p>
-      <button>Comprar</button>
+      <p class="price">R$ 5.000,00</p>
+      <button onclick="location.href='cart.html'">Compre</button>
+    </div>
+    <div class="produto">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=95&.v=1664472289659" alt="MacBook Air">
+      <h4>MacBook Air</h4>
+      <p class="price">R$ 6.500,00</p>
+      <button onclick="location.href='cart.html'">Compre</button>
     </div>
   </div>
 </section>
 
 <section class="recomendados">
-  <h2>Recomendação baseada em você!</h2>
+  <h2>Recomendação baseado em você!</h2>
   <div class="item-grid">
-    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Produto 1</h4><p>R$ 999</p><button>Comprar</button></div>
-    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Produto 2</h4><p>R$ 899</p><button>Comprar</button></div>
-    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Produto 3</h4><p>R$ 799</p><button>Comprar</button></div>
+    <div class="produto">
+      <img src="https://via.placeholder.com/240x200?text=iPhone+SE" alt="iPhone SE">
+      <h4>iPhone SE</h4>
+      <p class="price">R$ 2.000,00</p>
+      <button onclick="location.href='cart.html'">Compre</button>
+    </div>
+    <div class="produto">
+      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-14-16-compare-202310?wid=2000&hei=1500&fmt=jpeg&qlt=95&.v=1696014457630" alt="MacBook Pro">
+      <h4>MacBook Pro</h4>
+      <p class="price">R$ 8.000,00</p>
+      <button onclick="location.href='cart.html'">Compre</button>
+    </div>
+    <div class="produto">
+      <img src="https://via.placeholder.com/240x200?text=iPhone+14+Pro" alt="iPhone 14 Pro">
+      <h4>iPhone 14 Pro</h4>
+      <p class="price">R$ 5.000,00</p>
+      <button onclick="location.href='cart.html'">Compre</button>
+    </div>
   </div>
 </section>
 
 <section class="watch-section">
-  <div class="watch-banner">Apple Watch</div>
-  <div class="item-grid">
-    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Watch SE</h4><p>R$ 1.599</p><button>Comprar</button></div>
-    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Watch Series 8</h4><p>R$ 2.599</p><button>Comprar</button></div>
-    <div class="produto"><img src="https://via.placeholder.com/180" alt=""><h4>Watch Ultra</h4><p>R$ 4.999</p><button>Comprar</button></div>
-  </div>
-</section>
+  </section>
 
 <footer>
-  <div>
+  <div class="footer-column">
     <h3>SUPORTE</h3>
-      <input type="text" name="nome" placeholder="E-mail de contato" required>
-      <textarea name="mensagem" placeholder="Digite sua mensagem..." required></textarea>
+    <p>Está com dúvida? Envie uma mensagem para o nosso time de suporte</p>
+    <form onsubmit="alert('Mensagem enviada com sucesso!'); return false;">
+      <input type="email" name="email" placeholder="E-mail de contato" required>
+      <textarea name="mensagem" placeholder="Mensagem" required></textarea>
       <button type="submit">Enviar</button>
     </form>
   </div>
-  <div>
-    <h3>CONTATO</h3>
-    <p>(11) 4002-8922<br>help@applepoint.com<br>Joinville - SC</p>
+
+  <div class="footer-column">
+    <h3>Empresa</h3>
+    <a href="#">Produtos</a>
+    <a href="#">Serviços</a>
+    <a href="#">FAQ</a>
+  </div>
+
+  <div class="footer-column">
+    <h3>Entre em Contato</h3>
+    <p>+55 47 9 9280-5090</p>
+    <p>help@ApplePoint.com.br</p>
+    <p>São Paulo - SP</p>
     <div class="social-icons">
-        <a href="https://www.facebook.com/apple" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-        </a>
-        <a href="https://www.instagram.com/apple" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
-        </a>
-        <a href="https://www.youtube.com/apple" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+      <a href="https://www.facebook.com/apple" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      </a>
+      <a href="https://www.instagram.com/apple" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
+      </a>
+      <a href="https://www.youtube.com/apple" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+      </a>
     </div>
+  </div>
+  <div class="copyright">
+    <p>2025-ApplePoint</p>
   </div>
 </footer>
 
