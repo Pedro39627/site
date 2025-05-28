@@ -45,6 +45,7 @@
             font-size: 15px;
             transition: opacity 0.2s;
             white-space: nowrap;
+            cursor: pointer;
         }
         header nav a:hover {
             opacity: 0.8;
@@ -54,6 +55,7 @@
             gap: 20px;
             font-size: 22px;
             margin-left: 20px;
+            cursor: pointer;
         }
 
         .container {
@@ -65,12 +67,12 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             display: flex;
             gap: 40px;
-            align-items: flex-start; /* Alinha os itens ao topo */
+            align-items: flex-start;
         }
 
         .filters {
-            width: 280px; /* Largura fixa para os filtros */
-            flex-shrink: 0; /* Não encolhe */
+            width: 280px;
+            flex-shrink: 0;
             background-color: #f8f8f8;
             border-radius: 12px;
             padding: 30px;
@@ -171,7 +173,7 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Produtos ligeiramente maiores */
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
             justify-content: center;
         }
@@ -326,17 +328,16 @@
           grid-column: 1 / -1;
         }
 
-        /* --- Responsividade --- */
         @media (max-width: 992px) {
             .container {
-                flex-direction: column; /* Filtros empilhados acima da listagem */
+                flex-direction: column;
                 padding: 30px;
             }
             .filters {
-                width: 100%; /* Filtros ocupam toda a largura */
+                width: 100%;
             }
             .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Produtos menores em grid */
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                 gap: 25px;
             }
         }
@@ -445,7 +446,7 @@
                 font-size: 15px;
             }
             .product-card {
-                width: 100%; /* Ocupa 100% em telas muito pequenas */
+                width: 100%;
                 max-width: 250px;
                 margin-left: auto;
                 margin-right: auto;
@@ -473,7 +474,7 @@
             <a href="dashboard.html">Minha Conta</a>
             <a href="login.html">Login</a>
         </nav>
-        <div class="header-icons">🛒 ❤️ 👤</div>
+        <div class="header-icons" onclick="location.href='cart.html'">🛒 ❤️ 👤</div>
     </header>
 
     <main class="container">
@@ -484,14 +485,7 @@
                 <h4>CATEGORIA</h4>
                 <div class="filter-options">
                     <label><input type="checkbox" name="category" value="iphone"> IPhone</label>
-                    <label><input type="checkbox" name="category" value="mac"> Mac</label>
                     <label><input type="checkbox" name="category" value="macbook"> Macbook</label>
-                    <label><input type="checkbox" name="category" value="ipad"> iPad</label>
-                    <label><input type="checkbox" name="category" value="apple-watch"> Apple Watch</label>
-                    <label><input type="checkbox" name="category" value="airpods"> AirPods</label>
-                    <label><input type="checkbox" name="category" value="airtag"> AirTag</label>
-                    <label><input type="checkbox" name="category" value="homepod"> HomePod</label>
-                    <label><input type="checkbox" name="category" value="accessories"> Accessories</label>
                 </div>
             </div>
 
@@ -530,7 +524,7 @@
 
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/260x180?text=iPhone+14+Pro" alt="iPhone 14 Pro (512 GB) - Space Gray">
+                    <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone 14 Pro (512 GB) - Space Gray">
                     <div class="rating">
                         <span class="stars">★★★★★</span>
                         <span class="review-count">(798)</span>
@@ -540,17 +534,17 @@
                 </div>
 
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/260x180?text=iPhone+11+Pro" alt="iPhone 11 Pro (256 GB) - Gray">
+                    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-14-16-compare-202310?wid=2000&hei=1500&fmt=jpeg&qlt=95&.v=1696014457630" alt="MacBook Pro (1TB) - Space Gray">
                     <div class="rating">
                         <span class="stars">★★★★☆</span>
                         <span class="review-count">(200)</span>
                     </div>
-                    <div class="name">iPhone 11 Pro (256 GB) - Gray</div>
-                    <div class="price">R$ 2.800 <span class="old-price">R$ 3.000</span></div>
+                    <div class="name">MacBook Pro (1TB) - Space Gray</div>
+                    <div class="price">R$ 9.800 <span class="old-price">R$ 10.000</span></div>
                 </div>
 
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/260x180?text=iPhone+13" alt="iPhone 13 (256 GB) - Green">
+                    <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone 13 (256 GB) - Green">
                     <div class="rating">
                         <span class="stars">★★★☆☆</span>
                         <span class="review-count">(1733)</span>
@@ -560,52 +554,52 @@
                 </div>
 
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/260x180?text=iPhone+14" alt="iPhone 14 (1 TB) - Light Gray">
+                    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=95&.v=1664472289659" alt="MacBook Air (256 GB) - Silver">
                     <div class="rating">
                         <span class="stars">★★★★☆</span>
                         <span class="review-count">(798)</span>
                     </div>
-                    <div class="name">iPhone 14 (1 TB) - Light Gray</div>
-                    <div class="price">R$ 4.000</div>
+                    <div class="name">MacBook Air (256 GB) - Silver</div>
+                    <div class="price">R$ 6.000</div>
                 </div>
                  <div class="product-card">
-                    <img src="https://via.placeholder.com/260x180?text=iPhone+14+Pro" alt="iPhone 14 Pro (512 GB) - Space Gray">
+                    <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone 14 (512 GB) - Starlight">
                     <div class="rating">
                         <span class="stars">★★★★★</span>
                         <span class="review-count">(798)</span>
                     </div>
-                    <div class="name">iPhone 14 Pro (512 GB) - Space Gray</div>
-                    <div class="price">R$ 5.600 <span class="old-price">R$ 6.000</span></div>
+                    <div class="name">iPhone 14 (512 GB) - Starlight</div>
+                    <div class="price">R$ 4.600 <span class="old-price">R$ 5.000</span></div>
                 </div>
 
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/260x180?text=iPhone+11+Pro" alt="iPhone 11 Pro (256 GB) - Gray">
+                    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-14-16-compare-202310?wid=2000&hei=1500&fmt=jpeg&qlt=95&.v=1696014457630" alt="MacBook Pro (512GB) - Space Gray">
                     <div class="rating">
                         <span class="stars">★★★★☆</span>
                         <span class="review-count">(200)</span>
                     </div>
-                    <div class="name">iPhone 11 Pro (256 GB) - Gray</div>
-                    <div class="price">R$ 2.800 <span class="old-price">R$ 3.000</span></div>
+                    <div class="name">MacBook Pro (512GB) - Space Gray</div>
+                    <div class="price">R$ 8.500 <span class="old-price">R$ 9.000</span></div>
                 </div>
 
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/260x180?text=iPhone+13" alt="iPhone 13 (256 GB) - Green">
+                    <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone SE (128 GB) - Midnight">
                     <div class="rating">
                         <span class="stars">★★★☆☆</span>
                         <span class="review-count">(1733)</span>
                     </div>
-                    <div class="name">iPhone 13 (256 GB) - Green</div>
-                    <div class="price">R$ 2.800 <span class="old-price">R$ 3.000</span></div>
+                    <div class="name">iPhone SE (128 GB) - Midnight</div>
+                    <div class="price">R$ 2.500 <span class="old-price">R$ 2.800</span></div>
                 </div>
 
                 <div class="product-card">
-                    <img src="https://via.placeholder.com/260x180?text=iPhone+14" alt="iPhone 14 (1 TB) - Light Gray">
+                    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=95&.v=1664472289659" alt="MacBook Air (512 GB) - Gold">
                     <div class="rating">
                         <span class="stars">★★★★☆</span>
                         <span class="review-count">(798)</span>
                     </div>
-                    <div class="name">iPhone 14 (1 TB) - Light Gray</div>
-                    <div class="price">R$ 4.000</div>
+                    <div class="name">MacBook Air (512 GB) - Gold</div>
+                    <div class="price">R$ 7.200</div>
                 </div>
             </div>
 
@@ -625,6 +619,11 @@
         <div class="footer-column">
             <h3>SUPORTE</h3>
             <p>Está com dúvida?<br>Envie uma mensagem para o nosso time de suporte</p>
+            <form onsubmit="alert('Mensagem enviada com sucesso!'); return false;">
+                <input type="email" name="email" placeholder="E-mail de contato" required>
+                <textarea name="mensagem" placeholder="Mensagem" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
         </div>
         <div class="footer-column">
             <h3>Empresa</h3>

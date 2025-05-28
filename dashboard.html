@@ -45,6 +45,7 @@
             font-size: 15px;
             transition: opacity 0.2s;
             white-space: nowrap;
+            cursor: pointer;
         }
         header nav a:hover {
             opacity: 0.8;
@@ -54,6 +55,7 @@
             gap: 20px;
             font-size: 22px;
             margin-left: 20px;
+            cursor: pointer;
         }
 
         .container {
@@ -73,11 +75,11 @@
             flex-shrink: 0;
             background-color: #f8f8f8;
             border-radius: 12px;
-            padding: 30px 0; /* Padding lateral zero para os botões */
+            padding: 30px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centraliza a imagem e nome */
+            align-items: center;
         }
         .profile-pic {
             width: 120px;
@@ -97,7 +99,7 @@
         .sidebar-nav button {
             display: block;
             width: 100%;
-            padding: 15px 30px; /* Padding ajustado */
+            padding: 15px 30px;
             background: none;
             border: none;
             text-align: left;
@@ -106,7 +108,7 @@
             font-weight: 500;
             cursor: pointer;
             transition: background-color 0.2s, color 0.2s;
-            border-left: 4px solid transparent; /* Borda para indicar ativo */
+            border-left: 4px solid transparent;
         }
         .sidebar-nav button:hover:not(.active) {
             background-color: #e8e8e8;
@@ -122,7 +124,7 @@
             margin-top: 20px;
             border-top: 1px solid #ddd;
             padding-top: 20px;
-            color: #ff4444; /* Cor para Log-out */
+            color: #ff4444;
             border-left-color: transparent;
         }
         .sidebar-nav button:last-child:hover {
@@ -145,7 +147,7 @@
             text-align: center;
         }
         .content-section {
-            display: none; /* Escondido por padrão, mostrado via JS */
+            display: none;
             padding: 20px 0;
         }
         .content-section h3 {
@@ -376,7 +378,6 @@
           grid-column: 1 / -1;
         }
 
-        /* --- Responsividade --- */
         @media (max-width: 992px) {
             .container {
                 flex-direction: column;
@@ -385,7 +386,7 @@
             }
             .sidebar {
                 width: 100%;
-                flex-direction: row; /* Sidebar em linha para mobile */
+                flex-direction: row;
                 justify-content: space-around;
                 align-items: center;
                 padding: 20px;
@@ -401,7 +402,7 @@
                 font-size: 18px;
             }
             .sidebar-nav {
-                display: flex; /* Links da sidebar em linha */
+                display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
                 margin-top: 0;
@@ -410,7 +411,7 @@
                 width: auto;
                 padding: 10px 15px;
                 border-left: none;
-                border-bottom: 3px solid transparent; /* Borda para bottom */
+                border-bottom: 3px solid transparent;
                 margin-bottom: 0;
                 font-size: 15px;
             }
@@ -442,7 +443,7 @@
                 margin-bottom: 15px;
             }
             .info-grid {
-                grid-template-columns: 1fr; /* Empilha itens de info */
+                grid-template-columns: 1fr;
                 gap: 15px;
             }
             .info-item {
@@ -460,9 +461,9 @@
             }
             .order-history-table {
                 font-size: 13px;
-                overflow-x: auto; /* Permite rolagem em tabelas muito grandes */
-                display: block; /* Para rolagem horizontal */
-                white-space: nowrap; /* Evita quebra de linha nas células */
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
             }
             .order-history-table th, .order-history-table td {
                 padding: 10px 15px;
@@ -494,7 +495,7 @@
                 padding: 20px;
             }
             .sidebar {
-                flex-direction: column; /* Volta a empilhar no sidebar */
+                flex-direction: column;
                 padding: 20px;
                 align-items: center;
                 text-align: center;
@@ -504,15 +505,15 @@
                 margin-bottom: 15px;
             }
             .sidebar-nav {
-                flex-direction: column; /* Empilha os botões de navegação */
+                flex-direction: column;
                 width: 100%;
-                align-items: flex-start; /* Alinha à esquerda os botões */
+                align-items: flex-start;
             }
             .sidebar-nav button {
-                width: 100%; /* Botões ocupam 100% */
-                text-align: center; /* Centraliza texto nos botões */
+                width: 100%;
+                text-align: center;
                 border-bottom: none;
-                border-left: 4px solid transparent; /* Volta a borda lateral */
+                border-left: 4px solid transparent;
                 padding: 12px 0;
             }
             .sidebar-nav button.active {
@@ -601,7 +602,7 @@
             <a href="dashboard.html">Minha Conta</a>
             <a href="login.html">Login</a>
         </nav>
-        <div class="header-icons">🛒 ❤️ 👤</div>
+        <div class="header-icons" onclick="location.href='cart.html'">🛒 ❤️ 👤</div>
     </header>
 
     <main class="container">
@@ -732,7 +733,7 @@
                     <input type="text" id="tracking-id" placeholder="Ex: #12345" required>
                 </div>
                 <div class="button-group">
-                    <button class="save-btn">Rastrear Pedido</button>
+                    <button class="save-btn" onclick="alert('Funcionalidade de rastreamento (simulada). Pedido #'+document.getElementById('tracking-id').value+' em trânsito.')">Rastrear Pedido</button>
                 </div>
                 <p style="margin-top: 20px; color: #666;">Status atual do pedido #12345: **Saiu para entrega em São Paulo - SP.**</p>
             </div>
@@ -740,13 +741,13 @@
             <div id="cart" class="content-section">
                 <h3>MEU CARRINHO</h3>
                 <p>Visualize e gerencie os itens no seu carrinho de compras.</p>
-                <button class="add-new-btn" onclick="window.location.href='cart.html'">Ir para o Carrinho</button>
+                <button class="add-new-btn" onclick="location.href='cart.html'">Ir para o Carrinho</button>
             </div>
 
             <div id="wishlist" class="content-section">
                 <h3>LISTA DE DESEJOS</h3>
                 <p>Você ainda não adicionou nenhum item à sua lista de desejos.</p>
-                <button class="add-new-btn" onclick="window.location.href='products-list.html'">Navegar Produtos</button>
+                <button class="add-new-btn" onclick="location.href='products-list.html'">Navegar Produtos</button>
             </div>
 
             <div id="addresses" class="content-section">
@@ -758,8 +759,8 @@
                     <p>Número de Telefone: +55 49 9 9218-0980</p>
                     <p>Email: yurialberto21256@gmail.com</p>
                     <div class="card-actions">
-                        <button>Editar Endereço</button>
-                        <button style="color: #dc3545;">Remover</button>
+                        <button onclick="alert('Editar Endereço (funcionalidade simulada)')">Editar Endereço</button>
+                        <button style="color: #dc3545;" onclick="alert('Remover Endereço (funcionalidade simulada)')">Remover</button>
                     </div>
                 </div>
                 <div class="address-card">
@@ -769,11 +770,11 @@
                     <p>Número de Telefone: +55 49 9 9218-0980</p>
                     <p>Email: yurialberto21256@gmail.com</p>
                     <div class="card-actions">
-                        <button>Editar Endereço</button>
-                        <button style="color: #dc3545;">Remover</button>
+                        <button onclick="alert('Editar Endereço (funcionalidade simulada)')">Editar Endereço</button>
+                        <button style="color: #dc3545;" onclick="alert('Remover Endereço (funcionalidade simulada)')">Remover</button>
                     </div>
                 </div>
-                <button class="add-new-btn">Adicionar Novo Endereço</button>
+                <button class="add-new-btn" onclick="alert('Adicionar Novo Endereço (funcionalidade simulada)')">Adicionar Novo Endereço</button>
             </div>
 
             <div id="wallet" class="content-section">
@@ -782,33 +783,33 @@
                     <p><strong>CARTÃO 1</strong></p>
                     <p>Número: XXXX XXXX XXXX XXXX</p>
                     <div class="card-actions">
-                        <button>Editar Cartão</button>
-                        <button style="color: #dc3545;">Remover</button>
+                        <button onclick="alert('Editar Cartão (funcionalidade simulada)')">Editar Cartão</button>
+                        <button style="color: #dc3545;" onclick="alert('Remover Cartão (funcionalidade simulada)')">Remover</button>
                     </div>
                 </div>
                 <div class="payment-card">
                     <p><strong>CARTÃO 2</strong></p>
                     <p>Número: XXXX XXXX XXXX XXXX</p>
                     <div class="card-actions">
-                        <button>Editar Cartão</button>
-                        <button style="color: #dc3545;">Remover</button>
+                        <button onclick="alert('Editar Cartão (funcionalidade simulada)')">Editar Cartão</button>
+                        <button style="color: #dc3545;" onclick="alert('Remover Cartão (funcionalidade simulada)')">Remover</button>
                     </div>
                 </div>
                 <div class="payment-card">
                     <p><strong>PAYPAL</strong></p>
                     <p>Conta: xxxXXXX</p>
                     <div class="card-actions">
-                        <button>Editar Conta</button>
-                        <button style="color: #dc3545;">Remover</button>
+                        <button onclick="alert('Editar Conta PayPal (funcionalidade simulada)')">Editar Conta</button>
+                        <button style="color: #dc3545;" onclick="alert('Remover Conta PayPal (funcionalidade simulada)')">Remover</button>
                     </div>
                 </div>
-                <button class="add-new-btn">Adicionar Nova Forma de Pagamento</button>
+                <button class="add-new-btn" onclick="alert('Adicionar Nova Forma de Pagamento (funcionalidade simulada)')">Adicionar Nova Forma de Pagamento</button>
             </div>
 
             <div id="logout" class="content-section" style="text-align: center;">
                  <h3>SAIR DA CONTA</h3>
                  <p>Tem certeza que deseja sair?</p>
-                 <button class="save-btn" onclick="window.location.href='login.html'" style="background-color: #dc3545;">Confirmar Saída</button>
+                 <button class="save-btn" onclick="location.href='login.html'" style="background-color: #dc3545;">Confirmar Saída</button>
             </div>
 
         </section>
@@ -818,6 +819,11 @@
         <div class="footer-column">
             <h3>SUPORTE</h3>
             <p>Está com dúvida?<br>Envie uma mensagem para o nosso time de suporte</p>
+            <form onsubmit="alert('Mensagem enviada com sucesso!'); return false;">
+                <input type="email" name="email" placeholder="E-mail de contato" required>
+                <textarea name="mensagem" placeholder="Mensagem" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
         </div>
         <div class="footer-column">
             <h3>Empresa</h3>
@@ -853,11 +859,9 @@
             const contentSections = document.querySelectorAll('.content-section');
 
             function showSection(tabId) {
-                // Remove 'active' de todos os botões e esconde todas as seções
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 contentSections.forEach(sec => sec.style.display = 'none');
 
-                // Adiciona 'active' ao botão clicado e mostra a seção correspondente
                 const activeButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
                 if (activeButton) {
                     activeButton.classList.add('active');
@@ -869,29 +873,13 @@
                 }
             }
 
-            // Adiciona event listener para cada botão da sidebar
             tabButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const tabId = this.dataset.tab;
                     showSection(tabId);
-
-                    // Redireciona se for o botão de logout ou carrinho (para as páginas específicas)
-                    if (tabId === 'logout') {
-                        // A seção de logout é um alerta e um botão, não uma navegação direta no JS
-                        // O onclick no HTML já faz o redirecionamento.
-                        // Aqui apenas garante que a seção de logout é exibida.
-                        return;
-                    }
-                     if (tabId === 'cart') {
-                        // A seção de carrinho é um link direto no HTML.
-                        // Nada a fazer aqui além de mostrar a seção, se for necessário.
-                        return;
-                    }
-
                 });
             });
 
-            // Mostra a seção inicial (Detalhes da Conta) quando a página carrega
             showSection('account-details');
         });
     </script>
