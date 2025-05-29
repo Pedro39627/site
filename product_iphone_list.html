@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApplePoint - iPhones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #F0F2F5;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            background-color: #1A1A1A;
+            color: white;
+            flex-wrap: wrap;
+        }
+        header .logo {
+            font-weight: bold;
+            font-size: 22px;
+            margin-right: 20px;
+        }
+        header nav {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        header nav a {
+            margin: 0 18px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 15px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        header nav a:hover {
+            opacity: 0.8;
+        }
+        header .header-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 22px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .filters {
+            width: 280px;
+            flex-shrink: 0;
+            background-color: #f8f8f8;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .filters h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        .filter-group {
+            margin-bottom: 30px;
+        }
+        .filter-group h4 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        .filter-options label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #666;
+            cursor: pointer;
+        }
+        .filter-options input[type="checkbox"],
+        .filter-options input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #007AFF;
+            transform: scale(1.1);
+        }
+        .price-range-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .price-range-input input {
+            width: 100px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+        .price-options button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 8px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #666;
+            cursor: pointer;
+            text-align: left;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .price-options button:hover {
+            background-color: #f0f0f0;
+            border-color: #007AFF;
+        }
+        .price-options button.active {
+            background-color: #007AFF;
+            color: white;
+            border-color: #007AFF;
+        }
+
+        .product-listing {
+            flex-grow: 1;
+        }
+        .listing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .sort-by {
+            font-size: 15px;
+            color: #555;
+        }
+        .sort-by select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            margin-left: 8px;
+        }
+        .results-count {
+            font-size: 15px;
+            color: #555;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        }
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background: #f8f8f8;
+        }
+        .product-card .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 8px;
+        }
+        .product-card .stars {
+            color: #FF9500;
+            font-size: 16px;
+        }
+        .product-card .review-count {
+            font-size: 13px;
+            color: #666;
+        }
+        .product-card .name {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #007AFF;
+            font-size: 22px;
+        }
+        .product-card .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 16px;
+            margin-left: 8px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+        .pagination button {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: #555;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .pagination button:hover:not(.active) {
+            background-color: #f0f0f0;
+        }
+        .pagination button.active {
+            background-color: #007AFF;
+            color: white;
+            border-color: #007AFF;
+        }
+        .pagination span {
+            font-size: 16px;
+            color: #666;
+        }
+
+        footer {
+            background: #1A1A1A;
+            color: white;
+            padding: 50px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+        footer h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        footer p, footer a {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 15px;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        footer input, footer textarea {
+            width: calc(100% - 28px);
+            padding: 14px;
+            margin-top: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: #2A2A2A;
+            color: white;
+            font-size: 15px;
+        }
+        footer textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        footer button {
+            margin-top: 18px;
+            padding: 14px 25px;
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        footer button:hover {
+            background-color: #0056b3;
+        }
+        .social-icons a img {
+            width: 35px;
+            margin-right: 20px;
+            vertical-align: middle;
+            filter: invert(100%);
+        }
+        .copyright {
+            text-align: center;
+            color: #ccc;
+            font-size: 13px;
+            padding-top: 25px;
+            border-top: 1px solid #3A3A3A;
+            margin-top: 40px;
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+                padding: 30px;
+            }
+            .filters {
+                width: 100%;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            header .logo {
+                margin-bottom: 10px;
+            }
+            header nav {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            header nav a {
+                margin: 5px 10px;
+                font-size: 14px;
+            }
+            header .header-icons {
+                margin-left: 0;
+                margin-top: 10px;
+                font-size: 20px;
+            }
+            .container {
+                padding: 20px;
+            }
+            .filters h3 {
+                font-size: 18px;
+            }
+            .filters h4 {
+                font-size: 16px;
+            }
+            .filter-options label {
+                font-size: 14px;
+            }
+            .listing-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .sort-by select {
+                font-size: 14px;
+            }
+            .results-count {
+                font-size: 14px;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 20px;
+            }
+            .product-card {
+                padding: 20px;
+            }
+            .product-card img {
+                height: 140px;
+            }
+            .product-card .name {
+                font-size: 16px;
+            }
+            .product-card .price {
+                font-size: 20px;
+            }
+            .product-card .old-price {
+                font-size: 14px;
+            }
+            .pagination button {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            .pagination span {
+                font-size: 14px;
+            }
+            footer {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+            footer h3 {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            footer p, footer a {
+                font-size: 14px;
+            }
+            .social-icons a img {
+                width: 30px;
+            }
+            .copyright {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filters {
+                padding: 20px;
+            }
+            .filters h3 {
+                font-size: 16px;
+            }
+            .filters h4 {
+                font-size: 15px;
+            }
+            .product-card {
+                width: 100%;
+                max-width: 250px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .product-grid {
+                gap: 15px;
+            }
+            .listing-header {
+                gap: 10px;
+            }
+            .sort-by select {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><strong>ApplePoint</strong></div>
+        <nav>
+            <a href="inicial.html">Página Inicial</a>
+            <a href="product_list_all.html">Produtos</a>
+            <a href="contact.html">Contato</a>
+            <a href="dashboard.html">Minha Conta</a>
+            <a href="login.html">Login</a>
+        </nav>
+        <div class="header-icons" onclick="location.href='carrinho.html'">🛒 ❤️ 👤</div>
+    </header>
+
+    <main class="container">
+        <aside class="filters">
+            <h3>Selecione a sua categoria.</h3>
+
+            <div class="filter-group">
+                <h4>CATEGORIA</h4>
+                <div class="filter-options">
+                    <label><input type="checkbox" name="category" value="iphone" checked> IPhone</label>
+                    <label><input type="checkbox" name="category" value="macbook"> Macbook</label>
+                </div>
+            </div>
+        </aside>
+
+        <section class="product-listing">
+            <div class="listing-header">
+                <div class="sort-by">
+                    Classificar por:
+                    <select>
+                        <option value="popular">Popular</option>
+                        <option value="lowest-price">Menor Preço</option>
+                        <option value="highest-price">Maior Preço</option>
+                        <option value="newest">Mais Recentes</option>
+                    </select>
+                </div>
+                <div class="results-count">4/4 Resultados Filtrados</div>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://www.bing.com/th?id=OPHS.b%2fEz%2fS5h0nqfpQ474C474&o=5&pid=21.1&w=148&h=183&qlt=100&dpr=1&bw=6&bc=FFFFFF" alt="iPhone 14 Pro (512 GB) - Space Gray">
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(798)</span>
+                    </div>
+                    <div class="name">iPhone 14 Pro (512 GB) - Space Gray</div>
+                    <div class="price">R$ 5.989,26 <span class="old-price">R$ 6.799,97</span></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://www.bing.com/th?id=OPHS.fzaNbaZeYUjq4Q474C474&o=5&pid=21.1&w=148&h=205&qlt=100&dpr=1&bw=6&bc=FFFFFF" alt="iPhone 13 (256 GB) - Green">
+                    <div class="rating">
+                        <span class="stars">★★★☆☆</span>
+                        <span class="review-count">(1733)</span>
+                    </div>
+                    <div class="name">iPhone 13 (256 GB) - Green</div>
+                    <div class="price">R$ 3.029,97 <span class="old-price">R$ 3.499,39</span></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="data:image/jpeg;base64,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" alt="iPhone 14 (512 GB) - Starlight">
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="review-count">(798)</span>
+                    </div>
+                    <div class="name">iPhone 14 (512 GB) - Starlight</div>
+                    <div class="price">R$ 4.120,35 <span class="old-price">R$ 4.799,39</span></div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470&height=470&width=470&quality=0.8" alt="iPhone SE (128 GB) - Midnight">
+                    <div class="rating">
+                        <span class="stars">★★★☆☆</span>
+                        <span class="review-count">(1733)</span>
+                    </div>
+                    <div class="name">iPhone SE (128 GB) - Midnight</div>
+                    <div class="price">R$ 2.499,97 <span class="old-price">R$ 2.997,97</span></div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button><</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <span>...</span>
+                <button>10</button>
+                <button>></button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-column">
+            <h3>SUPORTE</h3>
+            <p>Está com dúvida?<br>Envie uma mensagem para o nosso time de suporte</p>
+            <form onsubmit="alert('Mensagem enviada com sucesso!'); return false;">
+                <input type="email" name="email" placeholder="E-mail de contato" required>
+                <textarea name="mensagem" placeholder="Mensagem" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <div class="footer-column">
+            <h3>Empresa</h3>
+            <a href="#">Produtos</a>
+            <a href="#">Serviços</a>
+            <a href="#">FAQ</a>
+        </div>
+        <div class="footer-column">
+            <h3>Entre em Contato</h3>
+            <p>+55 47 9 9280-5090</p>
+            <p>help@ApplePoint.com.br</p>
+            <p>São Paulo - SP</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/apple" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/apple" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
+                </a>
+                <a href="https://www.youtube.com/apple" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+                </a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>2025-ApplePoint</p>
+        </div>
+    </footer>
+</body>
+</html>

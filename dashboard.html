@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApplePoint - Dashboard do Usuário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #F0F2F5;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            background-color: #1A1A1A;
+            color: white;
+            flex-wrap: wrap;
+        }
+        header .logo {
+            font-weight: bold;
+            font-size: 22px;
+            margin-right: 20px;
+        }
+        header nav {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        header nav a {
+            margin: 0 18px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 15px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        header nav a:hover {
+            opacity: 0.8;
+        }
+        header .header-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 22px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background-color: #f8f8f8;
+            border-radius: 12px;
+            padding: 30px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #007AFF;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .username {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        .sidebar-nav button {
+            display: block;
+            width: 100%;
+            padding: 15px 30px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 16px;
+            color: #555;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            border-left: 4px solid transparent;
+        }
+        .sidebar-nav button:hover:not(.active) {
+            background-color: #e8e8e8;
+            color: #333;
+        }
+        .sidebar-nav button.active {
+            background-color: #e0e0e0;
+            color: #007AFF;
+            border-left-color: #007AFF;
+            font-weight: 600;
+        }
+        .sidebar-nav button:last-child {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            color: #ff4444;
+            border-left-color: transparent;
+        }
+        .sidebar-nav button:last-child:hover {
+            background-color: #ffebeb;
+            color: #cc0000;
+        }
+
+        .dashboard-content {
+            flex-grow: 1;
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .dashboard-content h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        .content-section {
+            display: none;
+            padding: 20px 0;
+        }
+        .content-section h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        .info-item {
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .info-item label {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .info-item p, .info-item input {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            border: none;
+            background: none;
+            width: 100%;
+        }
+        .form-edit-group {
+            margin-bottom: 20px;
+        }
+        .form-edit-group label {
+             display: block;
+            font-size: 15px;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .form-edit-group input {
+            width: calc(100% - 28px);
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: flex-end;
+        }
+        .button-group button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .button-group .save-btn {
+            background-color: #007AFF;
+            color: white;
+        }
+        .button-group .save-btn:hover {
+            background-color: #0056b3;
+        }
+        .button-group .cancel-btn {
+            background-color: #ddd;
+            color: #555;
+        }
+        .button-group .cancel-btn:hover {
+            background-color: #ccc;
+        }
+
+        .address-card, .payment-card {
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .address-card p, .payment-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .card-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .card-actions button {
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: #007AFF;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .card-actions button:hover {
+            opacity: 0.8;
+        }
+        .add-new-btn {
+            background-color: #007AFF;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+        .add-new-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .order-history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .order-history-table th, .order-history-table td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .order-history-table th {
+            background-color: #f0f0f0;
+            font-size: 15px;
+            color: #555;
+            font-weight: 600;
+        }
+        .order-history-table td {
+            font-size: 14px;
+            color: #444;
+        }
+        .order-history-table tr:hover {
+            background-color: #fdfdfd;
+        }
+        .order-history-table td .view-details {
+            color: #007AFF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .order-status.pending { color: #FF9500; }
+        .order-status.completed { color: #28a745; }
+        .order-status.shipped { color: #007AFF; }
+        .order-status.canceled { color: #dc3545; }
+
+
+        footer {
+          background: #1A1A1A;
+          color: white;
+          padding: 50px 40px;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 50px;
+          margin-top: 80px;
+        }
+        footer h3 {
+          color: white;
+          margin-bottom: 20px;
+          font-size: 20px;
+          font-weight: 600;
+        }
+        footer p, footer a {
+          color: #ccc;
+          line-height: 1.8;
+          font-size: 15px;
+          text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        footer input, footer textarea {
+          width: calc(100% - 28px);
+          padding: 14px;
+          margin-top: 12px;
+          border-radius: 8px;
+          border: none;
+          background-color: #2A2A2A;
+          color: white;
+          font-size: 15px;
+        }
+        footer textarea {
+          min-height: 100px;
+          resize: vertical;
+        }
+        footer button {
+          margin-top: 18px;
+          padding: 14px 25px;
+          background-color: #007AFF;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 16px;
+          transition: background-color 0.2s;
+        }
+        footer button:hover {
+          background-color: #0056b3;
+        }
+        .social-icons a img {
+          width: 35px;
+          margin-right: 20px;
+          vertical-align: middle;
+          filter: invert(100%);
+        }
+        .copyright {
+          text-align: center;
+          color: #ccc;
+          font-size: 13px;
+          padding-top: 25px;
+          border-top: 1px solid #3A3A3A;
+          margin-top: 40px;
+          grid-column: 1 / -1;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+                gap: 30px;
+                padding: 30px;
+            }
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                padding: 20px;
+            }
+            .profile-pic {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 0;
+                margin-right: 20px;
+            }
+            .username {
+                margin-bottom: 0;
+                font-size: 18px;
+            }
+            .sidebar-nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 0;
+            }
+            .sidebar-nav button {
+                width: auto;
+                padding: 10px 15px;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                margin-bottom: 0;
+                font-size: 15px;
+            }
+            .sidebar-nav button:first-child {
+                border-left: none;
+            }
+            .sidebar-nav button.active {
+                border-left-color: transparent;
+                border-bottom-color: #007AFF;
+            }
+            .sidebar-nav button:last-child {
+                border-top: none;
+                margin-top: 0;
+                border-bottom: 3px solid transparent;
+            }
+            .sidebar-nav button:last-child:hover {
+                background-color: #ffebeb;
+                border-bottom-color: #cc0000;
+            }
+            .dashboard-content {
+                padding: 30px;
+            }
+            .dashboard-content h2 {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+            .content-section h3 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .info-item {
+                padding: 15px;
+            }
+            .form-edit-group input {
+                padding: 12px;
+                font-size: 15px;
+            }
+            .button-group {
+                justify-content: center;
+            }
+            .address-card, .payment-card {
+                padding: 20px;
+            }
+            .order-history-table {
+                font-size: 13px;
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+            .order-history-table th, .order-history-table td {
+                padding: 10px 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            header .logo {
+                margin-bottom: 10px;
+            }
+            header nav {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            header nav a {
+                margin: 5px 10px;
+                font-size: 14px;
+            }
+            header .header-icons {
+                margin-left: 0;
+                margin-top: 10px;
+                font-size: 20px;
+            }
+            .container {
+                padding: 20px;
+            }
+            .sidebar {
+                flex-direction: column;
+                padding: 20px;
+                align-items: center;
+                text-align: center;
+            }
+            .profile-pic {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .sidebar-nav {
+                flex-direction: column;
+                width: 100%;
+                align-items: flex-start;
+            }
+            .sidebar-nav button {
+                width: 100%;
+                text-align: center;
+                border-bottom: none;
+                border-left: 4px solid transparent;
+                padding: 12px 0;
+            }
+            .sidebar-nav button.active {
+                border-bottom-color: transparent;
+                border-left-color: #007AFF;
+            }
+            .sidebar-nav button:last-child {
+                border-bottom-color: transparent;
+                border-left-color: transparent;
+            }
+            .dashboard-content h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            .content-section h3 {
+                font-size: 18px;
+            }
+            .info-item label, .info-item p, .info-item input {
+                font-size: 14px;
+            }
+            .form-edit-group label {
+                font-size: 14px;
+            }
+            .form-edit-group input {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .button-group button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .address-card p, .payment-card p {
+                font-size: 14px;
+            }
+            .card-actions button {
+                font-size: 14px;
+            }
+            .add-new-btn {
+                font-size: 15px;
+                padding: 12px 20px;
+            }
+            footer {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+            footer h3 {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            footer p, footer a {
+                font-size: 14px;
+            }
+            .social-icons a img {
+                width: 30px;
+            }
+            .copyright {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-content {
+                padding: 20px;
+            }
+            .dashboard-content h2 {
+                font-size: 18px;
+            }
+            .content-section h3 {
+                font-size: 16px;
+            }
+            .info-item {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><strong>ApplePoint</strong></div>
+        <nav>
+            <a href="inicial.html">Página Inicial</a>
+            <a href="product_list_all.html">Produtos</a>
+            <a href="contact.html">Contato</a>
+            <a href="dashboard.html">Minha Conta</a>
+            <a href="login.html">Login</a>
+        </nav>
+        <div class="header-icons" onclick="location.href='carrinho.html'">🛒</div>
+    </header>
+
+    <main class="container">
+        <aside class="sidebar">
+            <img src="https://i0.statig.com.br/bancodeimagens/4i/un/px/4iunpxfvqtmr2l5jzsk8gv4qk.jpg" alt="Foto de Perfil" class="profile-pic">
+            <span class="username">Yuri Alberto</span>
+
+            <nav class="sidebar-nav">
+                <button class="tab-button active" data-tab="account-details">Detalhes da Conta</button>
+                <button class="tab-button" data-tab="order-history">Histórico do Pedido</button>
+                <button class="tab-button" data-tab="order-location">Localização do Pedido</button>
+                <button class="tab-button" data-tab="cart">Carrinho</button>
+                <button class="tab-button" data-tab="wishlist">Lista de Desejos</button>
+                <button class="tab-button" data-tab="addresses">Endereços</button>
+                <button class="tab-button" data-tab="wallet">Carteira</button>
+                <button class="tab-button" data-tab="logout">Log-out</button>
+            </nav>
+        </aside>
+
+        <section class="dashboard-content">
+            <h2>Dashboard</h2>
+
+            <div id="account-details" class="content-section active-section">
+                <h3>CONFIGURAÇÕES DA CONTA</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Primeiro Nome</label>
+                        <p>Yuri</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Segundo Nome</label>
+                        <p>Alberto</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Username</label>
+                        <p>yuriAlberto</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Email</label>
+                        <p>yurialberto21256@gmail.com</p>
+                    </div>
+                     <div class="info-item">
+                        <label>Número do Telefone</label>
+                        <p>+55 49 9 9218-0980</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Email Secundário</label>
+                        <p>Não informado</p>
+                    </div>
+                     <div class="info-item">
+                        <label>CEP</label>
+                        <p>04703-002</p>
+                    </div>
+                    <div class="info-item">
+                        <label>País</label>
+                        <p>Brasil</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Cidade</label>
+                        <p>São Paulo</p>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="save-btn">Salvar Alterações</button>
+                </div>
+
+                <h3>MUDE A SENHA</h3>
+                <div class="form-edit-group">
+                    <label for="current-password">Senha Atual</label>
+                    <input type="password" id="current-password" placeholder="••••••••" required>
+                </div>
+                <div class="form-edit-group">
+                    <label for="new-password">Nova Senha</label>
+                    <input type="password" id="new-password" placeholder="Mais de 8 Caracteres" required>
+                </div>
+                <div class="form-edit-group">
+                    <label for="confirm-new-password">Confirme a Nova Senha</label>
+                    <input type="password" id="confirm-new-password" placeholder="Confirme a Nova Senha" required>
+                </div>
+                <div class="button-group">
+                    <button class="save-btn">Mudar Senha</button>
+                </div>
+            </div>
+
+            <div id="order-history" class="content-section">
+                <h3>HISTÓRICO DE PEDIDOS</h3>
+                <table class="order-history-table">
+                    <thead>
+                        <tr>
+                            <th>ID do Pedido</th>
+                            <th>Data</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#12345</td>
+                            <td>2025-05-20</td>
+                            <td>R$ 8.600</td>
+                            <td class="order-status completed">Concluído</td>
+                            <td><a href="#" class="view-details">Ver Detalhes</a></td>
+                        </tr>
+                        <tr>
+                            <td>#12346</td>
+                            <td>2025-05-22</td>
+                            <td>R$ 3.500</td>
+                            <td class="order-status pending">Pendente</td>
+                            <td><a href="#" class="view-details">Ver Detalhes</a></td>
+                        </tr>
+                        <tr>
+                            <td>#12347</td>
+                            <td>2025-05-25</td>
+                            <td>R$ 1.200</td>
+                            <td class="order-status shipped">Enviado</td>
+                            <td><a href="#" class="view-details">Ver Detalhes</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="order-location" class="content-section">
+                <h3>LOCALIZAÇÃO DO PEDIDO</h3>
+                <p>Insira o ID do seu pedido para rastrear:</p>
+                <div class="form-edit-group">
+                    <label for="tracking-id">ID do Pedido</label>
+                    <input type="text" id="tracking-id" placeholder="Ex: #12345" required>
+                </div>
+                <div class="button-group">
+                    <button class="save-btn" onclick="alert('Funcionalidade de rastreamento (simulada). Pedido #'+document.getElementById('tracking-id').value+' em trânsito.')">Rastrear Pedido</button>
+                </div>
+                <p style="margin-top: 20px; color: #666;">Status atual do pedido #12345: **Saiu para entrega em São Paulo - SP.**</p>
+            </div>
+
+            <div id="cart" class="content-section">
+                <h3>MEU CARRINHO</h3>
+                <p>Visualize e gerencie os itens no seu carrinho de compras.</p>
+                <button class="add-new-btn" onclick="location.href='cart.html'">Ir para o Carrinho</button>
+            </div>
+
+            <div id="wishlist" class="content-section">
+                <h3>LISTA DE DESEJOS</h3>
+                <p>Você ainda não adicionou nenhum item à sua lista de desejos.</p>
+                <button class="add-new-btn" onclick="location.href='product_list_all.html'">Navegar Produtos</button>
+            </div>
+
+            <div id="addresses" class="content-section">
+                <h3>MEUS ENDEREÇOS</h3>
+                <div class="address-card">
+                    <p><strong>ENDEREÇO 1</strong></p>
+                    <p>Yuri Alberto</p>
+                    <p>Rua Rio Tocantins, 224, Bairro Morumbi, São Paulo - SP</p>
+                    <p>Número de Telefone: +55 49 9 9218-0980</p>
+                    <p>Email: yurialberto21256@gmail.com</p>
+                    <div class="card-actions">
+                        <button onclick="alert('Editar Endereço (funcionalidade simulada)')">Editar Endereço</button>
+                        <button style="color: #dc3545;" onclick="alert('Remover Endereço (funcionalidade simulada)')">Remover</button>
+                    </div>
+                </div>
+                <div class="address-card">
+                    <p><strong>ENDEREÇO 2</strong></p>
+                    <p>Feyz Ibrahim</p>
+                    <p>Rua Luiz Castro, 98, Bairro Interlagos, São Paulo-SP</p>
+                    <p>Número de Telefone: +55 49 9 9218-0980</p>
+                    <p>Email: yurialberto21256@gmail.com</p>
+                    <div class="card-actions">
+                        <button onclick="alert('Editar Endereço (funcionalidade simulada)')">Editar Endereço</button>
+                        <button style="color: #dc3545;" onclick="alert('Remover Endereço (funcionalidade simulada)')">Remover</button>
+                    </div>
+                </div>
+                <button class="add-new-btn" onclick="alert('Adicionar Novo Endereço (funcionalidade simulada)')">Adicionar Novo Endereço</button>
+            </div>
+
+            <div id="wallet" class="content-section">
+                <h3>MINHA CARTEIRA</h3>
+                <div class="payment-card">
+                    <p><strong>CARTÃO 1</strong></p>
+                    <p>Número: XXXX XXXX XXXX XXXX</p>
+                    <div class="card-actions">
+                        <button onclick="alert('Editar Cartão (funcionalidade simulada)')">Editar Cartão</button>
+                        <button style="color: #dc3545;" onclick="alert('Remover Cartão (funcionalidade simulada)')">Remover</button>
+                    </div>
+                </div>
+                <div class="payment-card">
+                    <p><strong>CARTÃO 2</strong></p>
+                    <p>Número: XXXX XXXX XXXX XXXX</p>
+                    <div class="card-actions">
+                        <button onclick="alert('Editar Cartão (funcionalidade simulada)')">Editar Cartão</button>
+                        <button style="color: #dc3545;" onclick="alert('Remover Cartão (funcionalidade simulada)')">Remover</button>
+                    </div>
+                </div>
+                <div class="payment-card">
+                    <p><strong>PAYPAL</strong></p>
+                    <p>Conta: xxxXXXX</p>
+                    <div class="card-actions">
+                        <button onclick="alert('Editar Conta PayPal (funcionalidade simulada)')">Editar Conta</button>
+                        <button style="color: #dc3545;" onclick="alert('Remover Conta PayPal (funcionalidade simulada)')">Remover</button>
+                    </div>
+                </div>
+                <button class="add-new-btn" onclick="alert('Adicionar Nova Forma de Pagamento (funcionalidade simulada)')">Adicionar Nova Forma de Pagamento</button>
+            </div>
+
+            <div id="logout" class="content-section" style="text-align: center;">
+                 <h3>SAIR DA CONTA</h3>
+                 <p>Tem certeza que deseja sair?</p>
+                 <button class="save-btn" onclick="location.href='login.html'" style="background-color: #dc3545;">Confirmar Saída</button>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-column">
+            <h3>SUPORTE</h3>
+            <p>Está com dúvida?<br>Envie uma mensagem para o nosso time de suporte</p>
+            <form onsubmit="alert('Mensagem enviada com sucesso!'); return false;">
+                <input type="email" name="email" placeholder="E-mail de contato" required>
+                <textarea name="mensagem" placeholder="Mensagem" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <div class="footer-column">
+            <h3>Empresa</h3>
+            <a href="#">Produtos</a>
+            <a href="#">Serviços</a>
+            <a href="#">FAQ</a>
+        </div>
+        <div class="footer-column">
+            <h3>Entre em Contato</h3>
+            <p>+55 47 9 9280-5090</p>
+            <p>help@ApplePoint.com.br</p>
+            <p>São Paulo - SP</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/apple" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/apple" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
+                </a>
+                <a href="https://www.youtube.com/apple" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+                </a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>2025-ApplePoint</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            function showSection(tabId) {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                contentSections.forEach(sec => sec.style.display = 'none');
+
+                const activeButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+
+                const targetSection = document.getElementById(tabId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+                    showSection(tabId);
+                });
+            });
+
+            showSection('account-details');
+        });
+    </script>
+</body>
+</html>
