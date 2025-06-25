@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ApplePoint - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo"><strong>ApplePoint</strong></div>
+    <nav class="main-nav">
+        <a href="inicial.html">Página Inicial</a>
+        <a href="product_list_all.html">Produtos</a>
+        <a href="contact.html">Contato</a>
+        <a href="dashboard.html">Minha Conta</a>
+        <a href="login.html">Login</a>
+    </nav>
+    <div class="header-icons" onclick="location.href='carrinho.html'">🛒</div>
+</header>
+
+<main>
+
+<div class="container">
+    <div class="main-content dashboard-grid">
+        <aside class="sidebar">
+            <img alt="Foto de Perfil" class="profile-pic" src="https://i0.statig.com.br/bancodeimagens/4i/un/px/4iunpxfvqtmr2l5jzsk8gv4qk.jpg"/>
+            <span class="username">Yuri Alberto</span>
+            <nav class="sidebar-nav">
+                <button class="tab-button active" data-tab="account-details">Detalhes da Conta</button>
+                <button class="tab-button" data-tab="order-history">Histórico do Pedido</button>
+                <button class="tab-button" data-tab="addresses">Endereços</button>
+                <button class="tab-button logout" onclick="location.href='login.html'">Log-out</button>
+            </nav>
+        </aside>
+        <section class="dashboard-content">
+            <div class="content-section active-section" id="account-details">
+                <h3>CONFIGURAÇÕES DA CONTA</h3>
+                <div class="info-grid"><div class="info-item"><label>Nome</label><p>Yuri Alberto</p></div><div class="info-item"><label>Email</label><p>yuri@email.com</p></div></div>
+                <button class="btn btn-primary" style="width: auto;">Salvar Alterações</button>
+            </div>
+            <div class="content-section" id="order-history">
+                <h3>HISTÓRICO DE PEDIDOS</h3>
+                <table class="order-history-table"><thead><tr><th>ID</th><th>Data</th><th>Total</th><th>Status</th></tr></thead><tbody><tr><td>#12345</td><td>2025-05-20</td><td>R$ 8.600</td><td class="order-status completed">Concluído</td></tr></tbody></table>
+            </div>
+            <div class="content-section" id="addresses">
+                <h3>MEUS ENDEREÇOS</h3>
+                <div class="address-card"><p>Yuri Alberto, Rua Rio Tocantins, 224, São Paulo - SP</p><div class="card-actions"><button class="edit-action">Editar</button><button class="remove-action">Remover</button></div></div>
+            </div>
+        </section>
+    </div>
+</div>
+
+</main>
+
+<footer class="main-footer">
+    <div class="footer-column">
+        <h3>SUPORTE</h3>
+        <p>Está com dúvida? Envie uma mensagem para o nosso time de suporte</p>
+        <form onsubmit="alert('Mensagem enviada com sucesso!'); return false;">
+            <input name="email" placeholder="E-mail de contato" required type="email" class="form-control"/>
+            <textarea name="mensagem" placeholder="Mensagem" required class="form-control"></textarea>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    </div>
+    <div class="footer-column">
+        <h3>Entre em Contato</h3>
+        <p>+55 47 9 9280-5090</p>
+        <p>help@ApplePoint.com.br</p>
+        <p>São Paulo - SP</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/apple" target="_blank"><img alt="Facebook" src="https://cdn-icons-png.flaticon.com/512/733/733547.png"/></a>
+            <a href="https://www.instagram.com/apple" target="_blank"><img alt="Instagram" src="https://cdn-icons-png.flaticon.com/512/733/733558.png"/></a>
+            <a href="https://www.youtube.com/apple" target="_blank"><img alt="YouTube" src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"/></a>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>2025-ApplePoint</p>
+    </div>
+</footer>
+
+
+<script>
+// Carrinho usando localStorage
+function adicionarAoCarrinho(produtoId, nome, preco) {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const existente = carrinho.find(p => p.id === produtoId);
+  if (existente) {
+    existente.quantidade += 1;
+  } else {
+    carrinho.push({ id: produtoId, nome, preco, quantidade: 1 });
+  }
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  alert("Produto adicionado ao carrinho!");
+}
+
+function renderizarCarrinho() {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const container = document.getElementById("itens-carrinho");
+  const totalEl = document.getElementById("valor-total");
+  const subTotalEl = document.getElementById("sub-total-value");
+  
+  if (!container) return;
+
+  container.innerHTML = "";
+  let soma = 0;
+  carrinho.forEach(produto => {
+    const item = document.createElement("div");
+    item.classList.add('cart-item');
+    item.innerHTML = `
+        <img src="https://via.placeholder.com/100" class="item-image" alt="${produto.nome}">
+        <div class="item-details">
+            <h3>${produto.nome}</h3>
+            <p class="item-price">Preço: R$ ${produto.preco.toFixed(2)}</p>
+        </div>
+        <input class="form-control quantity-input" readonly type="text" value="${produto.quantidade}"/>
+    `;
+    container.appendChild(item);
+    soma += produto.preco * produto.quantidade;
+  });
+
+  if(subTotalEl) subTotalEl.textContent = `R$ ${soma.toFixed(2)}`;
+  if(totalEl) totalEl.textContent = `R$ ${soma.toFixed(2)}`; // Simple total for now
+}
+
+function limparCarrinho() {
+  localStorage.removeItem("carrinho");
+  location.reload();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("itens-carrinho")) {
+    renderizarCarrinho();
+  }
+  const limparBtn = document.getElementById("limpar-carrinho");
+  if (limparBtn) {
+    limparBtn.addEventListener("click", limparCarrinho);
+  }
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const contentSections = document.querySelectorAll('.content-section');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            contentSections.forEach(sec => sec.classList.remove('active-section'));
+            this.classList.add('active');
+            const targetSection = document.getElementById(this.dataset.tab);
+            if(targetSection) targetSection.classList.add('active-section');
+        });
+    });
+});
+</script>
+
+</body>
+</html>

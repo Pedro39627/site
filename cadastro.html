@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ApplePoint - Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo"><strong>ApplePoint</strong></div>
+    <nav class="main-nav">
+        <a href="inicial.html">Página Inicial</a>
+        <a href="product_list_all.html">Produtos</a>
+        <a href="contact.html">Contato</a>
+        <a href="dashboard.html">Minha Conta</a>
+        <a href="login.html">Login</a>
+    </nav>
+    <div class="header-icons" onclick="location.href='carrinho.html'">🛒</div>
+</header>
+
+<main>
+
+<div class="container">
+    <div class="auth-container">
+        <div class="auth-form-wrapper">
+            <h1>Cadastro</h1>
+            <form onsubmit="return criarConta()">
+                <div class="form-group"><label for="usuario">Usuário</label><input id="usuario" required type="text" class="form-control"/></div>
+                <div class="form-group"><label for="email">Email</label><input id="email" required type="email" class="form-control"/></div>
+                <div class="form-group"><label for="senha">Senha</label><input id="senha" required type="password" class="form-control"/></div>
+                <div class="form-group"><label for="confirma-senha">Confirme sua Senha</label><input id="confirma-senha" required type="password" class="form-control"/></div>
+                <div class="form-group"><label for="telefone">Telefone</label><input id="telefone" required type="tel" class="form-control"/></div>
+                <button type="submit" class="btn btn-primary">Criar conta</button>
+            </form>
+            <p class="switch-auth">Já tem conta? <a href="login.html">Logue Agora</a></p>
+        </div>
+    </div>
+</div>
+
+</main>
+
+<footer class="main-footer">
+    <div class="footer-column">
+        <h3>SUPORTE</h3>
+        <p>Está com dúvida? Envie uma mensagem para o nosso time de suporte</p>
+        <form onsubmit="alert('Mensagem enviada com sucesso!'); return false;">
+            <input name="email" placeholder="E-mail de contato" required type="email" class="form-control"/>
+            <textarea name="mensagem" placeholder="Mensagem" required class="form-control"></textarea>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    </div>
+    <div class="footer-column">
+        <h3>Entre em Contato</h3>
+        <p>+55 47 9 9280-5090</p>
+        <p>help@ApplePoint.com.br</p>
+        <p>São Paulo - SP</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/apple" target="_blank"><img alt="Facebook" src="https://cdn-icons-png.flaticon.com/512/733/733547.png"/></a>
+            <a href="https://www.instagram.com/apple" target="_blank"><img alt="Instagram" src="https://cdn-icons-png.flaticon.com/512/733/733558.png"/></a>
+            <a href="https://www.youtube.com/apple" target="_blank"><img alt="YouTube" src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"/></a>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>2025-ApplePoint</p>
+    </div>
+</footer>
+
+
+<script>
+// Carrinho usando localStorage
+function adicionarAoCarrinho(produtoId, nome, preco) {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const existente = carrinho.find(p => p.id === produtoId);
+  if (existente) {
+    existente.quantidade += 1;
+  } else {
+    carrinho.push({ id: produtoId, nome, preco, quantidade: 1 });
+  }
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  alert("Produto adicionado ao carrinho!");
+}
+
+function renderizarCarrinho() {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const container = document.getElementById("itens-carrinho");
+  const totalEl = document.getElementById("valor-total");
+  const subTotalEl = document.getElementById("sub-total-value");
+  
+  if (!container) return;
+
+  container.innerHTML = "";
+  let soma = 0;
+  carrinho.forEach(produto => {
+    const item = document.createElement("div");
+    item.classList.add('cart-item');
+    item.innerHTML = `
+        <img src="https://via.placeholder.com/100" class="item-image" alt="${produto.nome}">
+        <div class="item-details">
+            <h3>${produto.nome}</h3>
+            <p class="item-price">Preço: R$ ${produto.preco.toFixed(2)}</p>
+        </div>
+        <input class="form-control quantity-input" readonly type="text" value="${produto.quantidade}"/>
+    `;
+    container.appendChild(item);
+    soma += produto.preco * produto.quantidade;
+  });
+
+  if(subTotalEl) subTotalEl.textContent = `R$ ${soma.toFixed(2)}`;
+  if(totalEl) totalEl.textContent = `R$ ${soma.toFixed(2)}`; // Simple total for now
+}
+
+function limparCarrinho() {
+  localStorage.removeItem("carrinho");
+  location.reload();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("itens-carrinho")) {
+    renderizarCarrinho();
+  }
+  const limparBtn = document.getElementById("limpar-carrinho");
+  if (limparBtn) {
+    limparBtn.addEventListener("click", limparCarrinho);
+  }
+});
+</script>
+
+<script>function criarConta() { alert('Conta criada com sucesso!'); window.location.href='login.html'; return false; }</script>
+</body>
+</html>

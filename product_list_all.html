@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ApplePoint - Produtos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="logo"><strong>ApplePoint</strong></div>
+    <nav class="main-nav">
+        <a href="inicial.html">Página Inicial</a>
+        <a href="product_list_all.html">Produtos</a>
+        <a href="contact.html">Contato</a>
+        <a href="dashboard.html">Minha Conta</a>
+        <a href="login.html">Login</a>
+    </nav>
+    <div class="header-icons" onclick="location.href='carrinho.html'">🛒</div>
+</header>
+
+<main>
+
+<div class="container">
+    <div class="main-content">
+        <section class="product-listing">
+            <div class="listing-header"><h3>Todos os Produtos</h3></div>
+            <div class="item-grid">
+                <div class="produto-card">
+                    <img alt="MacBook Pro (1TB)" src="https://http2.mlstatic.com/D_NQ_NP_755622-MLA73279643202_122023-O.webp"/>
+                    <div>
+                        <div class="name">MacBook Pro (1TB)</div>
+                        <div class="price">R$ 9.799,99</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="adicionarAoCarrinho(1, 'MacBook Pro (1TB)', 9799.99, 'https://http2.mlstatic.com/D_NQ_NP_755622-MLA73279643202_122023-O.webp')">Comprar</button>
+                </div>
+                <div class="produto-card">
+                    <img alt="MacBook Air (256 GB)" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=95&.v=1664472289659"/>
+                    <div>
+                        <div class="name">MacBook Air (256 GB)</div>
+                        <div class="price">R$ 5.997,99</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="adicionarAoCarrinho(2, 'MacBook Air (256 GB)', 5997.99, 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=95&.v=1664472289659')">Comprar</button>
+                </div>
+                <div class="produto-card">
+                    <img alt="MacBook Pro (512GB)" src="https://http2.mlstatic.com/D_NQ_NP_743853-MLA53547669930_012023-O.webp"/>
+                    <div>
+                        <div class="name">MacBook Pro (512GB)</div>
+                        <div class="price">R$ 8.499,97</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="adicionarAoCarrinho(3, 'MacBook Pro (512GB)', 8499.97, 'https://http2.mlstatic.com/D_NQ_NP_743853-MLA53547669930_012023-O.webp')">Comprar</button>
+                </div>
+                <div class="produto-card">
+                    <img alt="MacBook Air (512 GB)" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=95&.v=1664472289659"/>
+                    <div>
+                        <div class="name">MacBook Air (512 GB)</div>
+                        <div class="price">R$ 7.199,97</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="adicionarAoCarrinho(4, 'MacBook Air (512 GB)', 7199.97, 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=95&.v=1664472289659')">Comprar</button>
+                </div>
+
+                <div class="produto-card">
+                    <div>
+                        <img src="https://www.bing.com/th?id=OPHS.b%2fEz%2fS5h0nqfpQ474C474&o=5&pid=21.1&w=148&h=183&qlt=100&dpr=1&bw=6&bc=FFFFFF" alt="iPhone 14 Pro (512 GB) - Space Gray">
+                        <div class="name">iPhone 14 Pro (512 GB) - Space Gray</div>
+                        <div class="price">R$ 5.989,26 <span class="old-price">R$ 6.799,97</span></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="adicionarAoCarrinho(5, 'iPhone 14 Pro (512 GB)', 5989.26, 'https://www.bing.com/th?id=OPHS.b%2fEz%2fS5h0nqfpQ474C474&o=5&pid=21.1&w=148&h=183&qlt=100&dpr=1&bw=6&bc=FFFFFF')">Comprar</button>
+                </div>
+                <div class="produto-card">
+                    <div>
+                        <img src="https://www.bing.com/th?id=OPHS.fzaNbaZeYUjq4Q474C474&o=5&pid=21.1&w=148&h=205&qlt=100&dpr=1&bw=6&bc=FFFFFF" alt="iPhone 13 (256 GB) - Green">
+                        <div class="name">iPhone 13 (256 GB) - Green</div>
+                        <div class="price">R$ 3.029,97 <span class="old-price">R$ 3.499,39</span></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="adicionarAoCarrinho(6, 'iPhone 13 (256 GB)', 3029.97, 'https://www.bing.com/th?id=OPHS.fzaNbaZeYUjq4Q474C474&o=5&pid=21.1&w=148&h=205&qlt=100&dpr=1&bw=6&bc=FFFFFF')">Comprar</button>
+                </div>
+                <div class="produto-card">
+                    <div>
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-storage-select-202209-6-1inch-starlight?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660691563148" alt="iPhone 14 (512 GB) - Starlight">
+                        <div class="name">iPhone 14 (512 GB) - Starlight</div>
+                        <div class="price">R$ 4.120,35 <span class="old-price">R$ 4.799,39</span></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="adicionarAoCarrinho(7, 'iPhone 14 (512 GB)', 4120.35, 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-storage-select-202209-6-1inch-starlight?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660691563148')">Comprar</button>
+                </div>
+                <div class="produto-card">
+                    <div>
+                        <img src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470" alt="iPhone SE (128 GB) - Midnight">
+                        <div class="name">iPhone SE (128 GB) - Midnight</div>
+                        <div class="price">R$ 2.499,97 <span class="old-price">R$ 2.997,97</span></div>
+                    </div>
+                    <button class="btn btn-primary" onclick="adicionarAoCarrinho(8, 'iPhone SE (128 GB)', 2499.97, 'https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470')">Comprar</button>
+                </div>
+                
+                <div class="produto-card">
+                    <img alt="iPhone 14" src="https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470"/>
+                    <div>
+                        <h4>iPhone 14</h4>
+                        <p class="price">R$ 3.999,99</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="adicionarAoCarrinho(9, 'iPhone 14', 3999.99, 'https://www.iplace.com.br/ccstore/v1/images/?source=/file/v2959185546753224145/products/223816.00.638479112854599359-apple-iphone-14-128gb-meia-noite-mpuf3br-a.jpg&height=470&width=470')">Comprar</button>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+</main>
+
+<footer class="main-footer">
+    <div class="footer-column">
+        <h3>SUPORTE</h3>
+        <p>Está com dúvida? Envie uma mensagem para o nosso time de suporte</p>
+        <form onsubmit="alert('Mensagem enviada com sucesso!'); return false;">
+            <input name="email" placeholder="E-mail de contato" required type="email" class="form-control"/>
+            <textarea name="mensagem" placeholder="Mensagem" required class="form-control"></textarea>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    <div class="footer-column">
+        <h3>Entre em Contato</h3>
+        <p>+55 47 9 9280-5090</p>
+        <p>help@ApplePoint.com.br</p>
+        <p>São Paulo - SP</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/apple" target="_blank"><img alt="Facebook" src="https://cdn-icons-png.flaticon.com/512/733/733547.png"/></a>
+            <a href="https://www.instagram.com/apple" target="_blank"><img alt="Instagram" src="https://cdn-icons-png.flaticon.com/512/733/733558.png"/></a>
+            <a href="https://www.youtube.com/apple" target="_blank"><img alt="YouTube" src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"/></a>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>2025-ApplePoint</p>
+    </div>
+</footer>
+
+
+<script>
+// Carrinho usando localStorage
+function adicionarAoCarrinho(produtoId, nome, preco, imagem) {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const existente = carrinho.find(p => p.id === produtoId);
+  if (existente) {
+    existente.quantidade += 1;
+  } else {
+    carrinho.push({ id: produtoId, nome, preco, quantidade: 1, imagem: imagem });
+  }
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  alert("Produto adicionado ao carrinho!");
+}
+
+function renderizarCarrinho() {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const container = document.getElementById("itens-carrinho");
+  const totalEl = document.getElementById("valor-total");
+  const subTotalEl = document.getElementById("sub-total-value");
+  
+  if (!container) return;
+
+  if (carrinho.length === 0) {
+      container.innerHTML = "<p>Seu carrinho está vazio.</p>";
+      if (subTotalEl) subTotalEl.textContent = "R$ 0.00";
+      if (totalEl) totalEl.textContent = "R$ 0.00";
+      return;
+  }
+  
+  container.innerHTML = "";
+  let soma = 0;
+  carrinho.forEach(produto => {
+    const item = document.createElement("div");
+    item.classList.add('cart-item');
+    item.innerHTML = `
+        <img src="${produto.imagem}" class="item-image" alt="${produto.nome}">
+        <div class="item-details">
+            <h3>${produto.nome}</h3>
+            <p class="item-price">Preço: R$ ${produto.preco.toFixed(2)}</p>
+        </div>
+        <input class="form-control quantity-input" readonly type="text" value="${produto.quantidade}"/>
+    `;
+    container.appendChild(item);
+    soma += produto.preco * produto.quantidade;
+  });
+
+  if(subTotalEl) subTotalEl.textContent = `R$ ${soma.toFixed(2)}`;
+  if(totalEl) totalEl.textContent = `R$ ${soma.toFixed(2)}`;
+}
+
+function limparCarrinho() {
+  localStorage.removeItem("carrinho");
+  location.reload();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("itens-carrinho")) {
+    renderizarCarrinho();
+  }
+  const limparBtn = document.getElementById("limpar-carrinho");
+  if (limparBtn) {
+    limparBtn.addEventListener("click", limparCarrinho);
+  }
+});
+</script>
+
+</body>
+</html>
